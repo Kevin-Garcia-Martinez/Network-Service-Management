@@ -25,3 +25,10 @@ six==1.15.0
 sqlparse==0.4.1
 Unipath==1.1
 
+{
+    "FILENAME": "secret.json",
+    "SECRET_KEY": "s&=k97vv*#v(ryq7eegr!e7rbpvkl8g^zewai02m_apk-z3qw=",
+    "DB_NAME": "topologydb",
+    "USER": "kevin",
+    "PASSWORD": "redes"
+}
