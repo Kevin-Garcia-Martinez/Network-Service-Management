@@ -1,0 +1,28 @@
+<!-- Heredamos todo lo que van a tener en común todos nuestros templates -->
+{% extends "base.html" %}
+<!-- Cargamos nuestros archivos estáticos que se encuentran en la carpeta 'statics' -->
+{% load  static %}
+
+{% block content %}
+    <div class="grid-container" style="margin-top: 24px; text-align: center;">
+        <h3 class="cell"> - Vlan Menu - </h3>
+        <ul>
+            <li>
+                <a class="button" href="{% url 'vlan_app:vlan-list' %}"> List All Vlans </a>
+            </li>
+            
+            <li>
+                <a class="button" href="{% url 'vlan_app:vlan-create' %}"> Create Vlan </a>
+            </li>
+
+            <li>
+                <a class="button" href="{% url 'vlan_app:vlan-list' %}"> Delete Vlan </a>
+            </li>
+
+        </ul>
+        
+        
+    </div>
+{% endblock content %}
+    
+

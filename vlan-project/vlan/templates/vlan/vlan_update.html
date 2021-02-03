@@ -1,0 +1,18 @@
+<!-- Heredamos todo lo que van a tener en común todos nuestros templates -->
+{% extends "base.html" %}
+<!-- Cargamos nuestros archivos estáticos que se encuentran en la carpeta 'statics' -->
+{% load  static %}
+
+{% block content %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h3 class="cell" style="margin-top: 24px; text-align: center;"> Update Vlan {{ object.name }} Interfaces </h3>
+        <form class="cell grid-x grid-margin-x align-center" method="POST" autocomplete="off"> {% csrf_token %}
+            {{ form.interfaces }}
+            <div class="cell" style="text-align: center;">
+                <button type="submit" class="button" style="width: 132px;"> Update Vlan </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+sudo ip address add 148.204.56.10/24 dev enp0s3 brd +
+sudo ip link set dev enp0s3 up
+sudo ip route add default via 148.204.56.1 dev enp0s3
+
+{'R1': ['8.8.8.14', '148.204.56.2', '8.8.8.18'], 
+ 'R2': ['8.8.8.13', '8.8.8.10'], 'R4': ['8.8.8.6', '148.204.56.1', '8.8.8.2'], 
+ 'R3': ['8.8.8.17', '8.8.8.9'], 
+ 'R5': ['8.8.8.5'], 
+ 'R6': ['8.8.8.1']
+}
+
+Neighbours: {'R1': ['R2', 'R4', 'R3'], 'R2': ['R1', 'R3'], 'R4': ['R5', 'R1', 'R6'], 'R3': ['R1', 'R2'], 'R5': ['R4'], 'R6': ['R4']}
+Routers Information: {'R1': ['8.8.8.14', '148.204.56.2', '8.8.8.18'], 'R2': ['8.8.8.13', '8.8.8.10'], 'R4': ['8.8.8.6', '148.204.56.1', '8.8.8.2'], 'R3': ['8.8.8.17', '8.8.8.9'], 'R5': ['8.8.8.5'], 'R6': ['8.8.8.1']}
+
+
+print(f'Setting up user \'pirata\' in router {router}')
+    for command in commands:
+        new_connection.send(command)
+        time.sleep(2)
+
+diagram = Digraph (comment='Network')
+for router in neighbours.keys():
+    diagram.node(router)
+    for neighbour in neighbours[router]:
+        diagram.edge(router, neighbour)
+diagram.render(filename='graph', format='png')    
+
+with open('graph.dot', 'w') as file:
+    file.write(diagram.source)
+
+print(f'{router} interfaces: {interfaces}')
+    print(f'{router} ip interfaces: {ip_interfaces}')
+    print(f'{router} mask interfaces: {mask_interfaces}')

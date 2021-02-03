@@ -1,0 +1,46 @@
+<!-- Heredamos todo lo que van a tener en común todos nuestros templates -->
+{% extends "base.html" %}
+<!-- Cargamos nuestros archivos estáticos que se encuentran en la carpeta 'statics' -->
+{% load  static %}
+
+{% block content %}
+    <!-- Al indicar class="grid-container" en el div esto nos proporciona margenes 
+    a la izquierda y derecha, así como centrar los componentes -->
+    <div class="grid-container" style="margin-top: 24px;">
+        <!-- Creamos un lienzo de foundation 12 columnas, con separación entre los elementos
+        creados del grid-container -->
+        <div class="grid-x grid-margin-x"> 
+            <h3 class="cell" style="text-align: center;" > Registered Vlans: </h3>
+            {% for vlan in vlans  %}
+                <div class="card cell large-4" style="width: 300px;">
+                    <div class="card-divider label primary">
+                        <h4 class="cell" style="text-align: center;" > {{ vlan.name }} : {{ vlan.number }} </h4>
+                    </div>
+                    <div class="card-section">
+                        <p> Network: {{ vlan.network }} </p>
+                        <p> Mask: {{ vlan.mask }} </p>
+                        <p> Gateway: {{ vlan.gateway }} </p>
+                        <p> Interfaces: </p> 
+                            <ul>
+                                {% for interface in vlan.interfaces.all %}
+                                    <li> {{ interface }} </li>    
+                                {% empty %}
+                                    <li> Not Assigned Yet </li>
+                                {% endfor %}    
+                            </ul>
+                        
+                        
+                        {% ifnotequal vlan.number '1' %}
+                            <div style="text-align: center;">
+                                <!-- <a class="button warning" href="{% url 'vlan_app:vlan-update' vlan.id %}" > Update </a> -->
+                                <a class="button alert" href="{% url 'vlan_app:vlan-delete' vlan.id %}" > Delete </a>
+                            </div> 
+                        {% endifnotequal %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock content %}
+    

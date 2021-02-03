@@ -1,0 +1,2 @@
+sudo ip address add 10.0.1.1/24 dev enp0s3 brd +
+sudo ip route add default via 10.0.1.254 dev enp0s3
